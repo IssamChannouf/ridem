@@ -18,5 +18,8 @@ public class UserService {
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
-    
+    // Saves a new user to the database and returns the persisted user with auto-generated ID
+    public User createUser(User user){
+        return userRepository.save(user);
+    }
 }
