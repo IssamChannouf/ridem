@@ -7,8 +7,10 @@ import com.issam.ridem.entity.User;
 import com.issam.ridem.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 
 // Handles all HTTP requests related to users, maps to the /users base URL
 @RestController
@@ -28,6 +30,12 @@ public class UserController {
     @PostMapping
     public User createUser(@Valid @RequestBody User user) {
         return userService.createUser(user);
-}
+    }
+    // Handles GET /users/{id} - returns a single user by ID, or 404 if not found
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+    
 }
 

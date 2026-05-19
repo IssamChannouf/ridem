@@ -22,4 +22,12 @@ public class GlobalExceptionHandler {
         );
         return errors;
     }
+    // Handles RuntimeException by returning the exception message with a 404 status    
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Map<String, String> handleNotFoundException(RuntimeException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return error;
+    }
 }
