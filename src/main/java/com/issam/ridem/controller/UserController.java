@@ -1,11 +1,11 @@
 package com.issam.ridem.controller;
 
-import com.issam.ridem.repository.UserRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import com.issam.ridem.entity.User;
 import com.issam.ridem.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/users")
 public class UserController {
     
-    private final UserRepository userRepository;
     private final UserService userService;
-    public UserController(UserService userService, UserRepository userRepository){
+    public UserController(UserService userService){
         this.userService = userService;
-        this.userRepository = userRepository;
     }
     // Handles GET /users — retrieves and returns all users from the database as JSON
     @GetMapping
@@ -28,7 +26,7 @@ public class UserController {
     }
     // Handles POST /users — accepts JSON user data and persists it to the database, returns the created user with auto-generated ID
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User createUser(@Valid @RequestBody User user) {
         return userService.createUser(user);
 }
 }
