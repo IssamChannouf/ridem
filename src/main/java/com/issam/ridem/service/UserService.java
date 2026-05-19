@@ -32,4 +32,9 @@ public class UserService {
             throw new RuntimeException("User not found with id: " + id);
         } 
     }
+    // Deletes a sigle user by ID, throws RuntimeException if not found
+    public void deleteUser(Long id) {
+        getUserById(id);
+        userRepository.deleteById(id);
+    }
 }
