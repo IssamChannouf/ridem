@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 // Represents a user entity mapped to the users table in the database.
@@ -18,11 +19,20 @@ public class User {
     private Long userId;
 
     // Unique name for each user
+    @NotBlank
+    @Size(min=2, max=50)
+    @Pattern(regexp="^[A-Z].*")
     private String name;
-    // Unique email as alternative identifier and for account recovery
+    // Unique email as alternative identifier and for account
+    @NotBlank
+    @Email
     private String email;
     // Password for authentication stored as hash
+    @NotBlank
+    @Size(min=8, max=50)
     private String password;
     // Age of the user, optional since it is not required to use the app
+    @Min(14)
+    @Max(80)
     private Integer age;
 }
