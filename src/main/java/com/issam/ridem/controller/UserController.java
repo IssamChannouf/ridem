@@ -24,8 +24,7 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
-    // Handles POST /users — accepts JSON user data and persists it to the database, returns the created user with auto-generated ID
-    @PostMapping
+    // Handles POST /users — accepts JSON user data, @Valid triggers validation against User constraints before saving, returns 400 if invalid or the created user with auto-generated ID if successful    @PostMapping
     public User createUser(@Valid @RequestBody User user) {
         return userService.createUser(user);
 }
