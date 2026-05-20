@@ -1,15 +1,26 @@
 # Ridem
 
-A RESTful app for tracking and evaluating the progress in your workout and best performance, built with Spring Boot and PostgreSQL as a portfolio project to demonstrate Java backend development
+A RESTful API for tracking gym workouts and monitoring progressive overload over time, built with Java, Spring Boot, and PostgreSQL.
 
 ## Tech Stack
 
-* Java
-* Spring Boot
-* PostgreSQL
+* Java 21
+* Spring Boot 3.5
+* PostgreSQL 16
 * Docker
-* JUnit
 * Maven
+* JUnit (in progress)
+
+## API Endpoints
+
+### Users
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /users | Retrieve all users |
+| POST | /users | Create a new user |
+| GET | /users/{id} | Retrieve a user by ID |
+| PUT | /users/{id} | Update a user by ID |
+| DELETE | /users/{id} | Delete a user by ID |
 
 ## Data Model
 
