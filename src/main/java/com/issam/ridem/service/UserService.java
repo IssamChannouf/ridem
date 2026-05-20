@@ -32,9 +32,18 @@ public class UserService {
             throw new RuntimeException("User not found with id: " + id);
         } 
     }
-    // Deletes a sigle user by ID, throws RuntimeException if not found
+    // Deletes a single user by ID, throws RuntimeException if not found
     public void deleteUser(Long id) {
         getUserById(id);
         userRepository.deleteById(id);
+    }
+    // Updates all fields of an existing user by ID except userId, throws RuntimeException if not found
+    public User updateUser(Long id, User updatedUser) {
+        User existingUser = getUserById(id);
+        existingUser.setName(updatedUser.getName());
+        existingUser.setEmail(updatedUser.getEmail());
+        existingUser.setPassword(updatedUser.getPassword());
+        existingUser.setAge(updatedUser.getAge());
+       return userRepository.save(existingUser);
     }
 }
