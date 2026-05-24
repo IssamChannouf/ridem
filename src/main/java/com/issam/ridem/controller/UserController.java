@@ -16,27 +16,32 @@ public class UserController {
     public UserController(UserService userService){
         this.userService = userService;
     }
+
     // Handles GET /users, retrieves and returns all users from the database as JSON
     @GetMapping
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+
     // Handles POST /users, creates a new user, returns 400 if validation fails
     @PostMapping
     public User createUser(@Valid @RequestBody User user) {
         return userService.createUser(user);
     }
+
     // Handles GET /users/{id}, returns a single user by ID, or 404 if not found
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
+
     // Handles DELETE /users/{id}, returns 204 on success, 404 if user does not exist    
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
+    
     // Handles PUT /users/{id}, returns updated user on success, 404 if user does not exist
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @Valid @RequestBody User user) {
