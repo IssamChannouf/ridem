@@ -16,7 +16,7 @@ public class ExerciseService {
         this.exerciseRepository = exerciseRepository;
     }
 
-    //Retrieves all exercises from the database and returns them as a list
+    // Retrieves all exercises from the database and returns them as a list
     public List<Exercise> getAllExercises(){
         return exerciseRepository.findAll();
     }
@@ -26,7 +26,7 @@ public class ExerciseService {
         return exerciseRepository.save(exercise);
     }
 
-    //Retrieves a single exercise by ID, throws Runtime Exception if no exercise is found with the given ID
+    // Retrieves a single exercise by ID, throws RuntimeException if no exercise is found with the given ID
     public Exercise getExerciseById(Long id){
         Optional<Exercise> exercise = exerciseRepository.findById(id);
         if (exercise.isPresent()) {
@@ -42,7 +42,7 @@ public class ExerciseService {
         exerciseRepository.deleteById(id);
     }
 
-    // Updates all fields of an existing exercise by ID except exerciseId, throws Runtime Exception if not found
+    // Updates all fields of an existing exercise by ID except exerciseId, throws RuntimeException if not found
     public Exercise updateExercise(Long id, Exercise updatedExercise) {
         Exercise existingExercise = getExerciseById(id);
         existingExercise.setName(updatedExercise.getName());

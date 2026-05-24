@@ -1,10 +1,6 @@
 package com.issam.ridem.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -18,23 +14,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    // Unique name for each user - must start with uppercase, between 2 and 50 characters
+    // Unique name for each user, must start with uppercase, between 2 and 50 characters
     @NotBlank
     @Size(min=2, max=50)
     @Pattern(regexp="^[A-Z].*")
     private String name;
 
-    // Unique email as alternative identifier and for account - must be valid email format
+    // Unique email as alternative identifier and for account, must be valid email format
     @NotBlank
     @Email
     private String email;
 
-    // Password for authentication stored as hash - minimum 8 characters
+    // Password for authentication stored as hash, minimum 8 characters
     @NotBlank
     @Size(min=8, max=50)
     private String password;
     
-    // Age of the user, optional since it is not required to use the app - must be between 14 and 80 if provided
+    // Age of the user, optional since it is not required to use the app, must be between 14 and 80 if provided
     @Min(14)
     @Max(80)
     private Integer age;

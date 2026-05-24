@@ -1,15 +1,10 @@
 package com.issam.ridem.entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 
-// // Workout template owned by a user, mapped to the workout_templates table
+// Workout template owned by a user, mapped to the workout_templates table
 @Entity
 @Table(name = "workout_templates")
 @Data
@@ -26,6 +21,7 @@ public class WorkoutTemplate {
     private String name;
 
     // Owner of this template, referenced as a foreign key (user_id) in the database 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

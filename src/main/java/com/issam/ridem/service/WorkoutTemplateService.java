@@ -26,7 +26,7 @@ public class WorkoutTemplateService {
         return workoutTemplateRepository.save(workoutTemplate);
     }
 
-    // Retrieves a single template by ID, throws a Runtime Exception if no existing template is found with the given ID
+    // Retrieves a single template by ID, throws RuntimeException if no existing template is found with the given ID
     public WorkoutTemplate getWorkoutTemplateById(Long id){
         Optional<WorkoutTemplate> workoutTemplate = workoutTemplateRepository.findById(id);
         if (workoutTemplate.isPresent()) {

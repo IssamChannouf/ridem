@@ -25,7 +25,7 @@ public class WorkoutTemplateController {
     }
     
     // Handles POST /workout-templates, creates a new template, returns 400 if validation fails    
-    @PostMapping()
+    @PostMapping
     public WorkoutTemplate createWorkoutTemplate(@Valid @RequestBody WorkoutTemplate workoutTemplate) {
         return workoutTemplateService.createWorkoutTemplate(workoutTemplate);
     }
