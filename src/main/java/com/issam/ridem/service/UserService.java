@@ -1,5 +1,6 @@
 package com.issam.ridem.service;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.issam.ridem.repository.UserRepository;
 import java.util.List;
@@ -11,9 +12,12 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder;
     
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Retrieves all users from the database and returns them as a list
@@ -23,6 +27,7 @@ public class UserService {
 
     // Saves a new user to the database and returns the persisted user with auto-generated ID
     public User createUser(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -47,7 +52,7 @@ public class UserService {
         User existingUser = getUserById(id);
         existingUser.setName(updatedUser.getName());
         existingUser.setEmail(updatedUser.getEmail());
-        existingUser.setPassword(updatedUser.getPassword());
+        existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         existingUser.setAge(updatedUser.getAge());
         return userRepository.save(existingUser);
     }

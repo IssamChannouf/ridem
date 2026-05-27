@@ -27,7 +27,7 @@ public class User {
 
     // Password for authentication stored as hash, minimum 8 characters
     @NotBlank
-    @Size(min=8, max=50)
+    @Size(min=8, max=60)
     private String password;
     
     // Age of the user, optional since it is not required to use the app, must be between 14 and 80 if provided
