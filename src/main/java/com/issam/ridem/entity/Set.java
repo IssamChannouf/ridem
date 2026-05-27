@@ -4,8 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+// Represents a set entity mapped to the sets table in the database
 @Entity
-@Table(name = "set")
+@Table(name = "sets")
 @Data
 public class Set {
     
