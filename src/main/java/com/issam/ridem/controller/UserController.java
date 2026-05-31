@@ -1,8 +1,10 @@
 package com.issam.ridem.controller;
 
 import java.util.List;
-import com.issam.ridem.entity.User;
 import com.issam.ridem.service.UserService;
+import com.issam.ridem.dto.CreateUserRequest;
+import com.issam.ridem.dto.UpdateUserRequest;
+import com.issam.ridem.dto.UserDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,19 +21,19 @@ public class UserController {
 
     // Handles GET /users, retrieves and returns all users from the database as JSON
     @GetMapping
-    public List<User> getAllUsers(){
+    public List<UserDTO> getAllUsers(){
         return userService.getAllUsers();
     }
 
     // Handles POST /users, creates a new user, returns 400 if validation fails
     @PostMapping
-    public User createUser(@Valid @RequestBody User user) {
-        return userService.createUser(user);
+    public UserDTO createUser(@Valid @RequestBody CreateUserRequest request) {
+        return userService.createUser(request);
     }
 
     // Handles GET /users/{id}, returns a single user by ID, or 404 if not found
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
+    public UserDTO getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
@@ -44,7 +46,7 @@ public class UserController {
     
     // Handles PUT /users/{id}, returns updated user on success, 404 if user does not exist
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @Valid @RequestBody User user) {
-        return userService.updateUser(id, user);
+    public UserDTO updateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest request) {
+        return userService.updateUser(id, request);
     }
 }

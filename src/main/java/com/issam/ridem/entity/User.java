@@ -1,7 +1,6 @@
 package com.issam.ridem.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
 // Represents a user entity mapped to the users table in the database
@@ -14,24 +13,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    // Unique name for each user, must start with uppercase, between 2 and 50 characters
-    @NotBlank
-    @Size(min=2, max=50)
-    @Pattern(regexp="^[A-Z].*")
+    // Full name for each user
     private String name;
 
-    // Unique email as alternative identifier and for account, must be valid email format
-    @NotBlank
-    @Email
+    // Unique email as alternative identifier and for account
+    @Column(unique = true)
     private String email;
 
-    // Password for authentication stored as hash, minimum 8 characters
-    @NotBlank
-    @Size(min=8, max=60)
+    // Password for authentication, stored as a BCrypt hash
     private String password;
     
-    // Age of the user, optional since it is not required to use the app, must be between 14 and 80 if provided
-    @Min(14)
-    @Max(80)
+    // Age of the user
     private Integer age;
 }
