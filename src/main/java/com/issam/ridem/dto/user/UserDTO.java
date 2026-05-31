@@ -1,4 +1,4 @@
-package com.issam.ridem.dto;
+package com.issam.ridem.dto.user;
 
 import com.issam.ridem.entity.User;
 import lombok.Data;

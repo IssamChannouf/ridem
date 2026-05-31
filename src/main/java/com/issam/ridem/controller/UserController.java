@@ -1,10 +1,12 @@
 package com.issam.ridem.controller;
 
 import java.util.List;
+
+import com.issam.ridem.dto.user.CreateUserRequest;
+import com.issam.ridem.dto.user.UpdateUserRequest;
+import com.issam.ridem.dto.user.UserDTO;
 import com.issam.ridem.service.UserService;
-import com.issam.ridem.dto.CreateUserRequest;
-import com.issam.ridem.dto.UpdateUserRequest;
-import com.issam.ridem.dto.UserDTO;
+
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

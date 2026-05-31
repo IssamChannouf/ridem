@@ -1,7 +1,6 @@
 package com.issam.ridem.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
 // Represents an exercise entity mapped to the exercises table in the database
@@ -14,16 +13,11 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long exerciseId;
 
-    // Unique name for each exercise, must start with uppercase, between 5 and 80 characters
-    @NotBlank
-    @Size(min=5, max=80)
-    @Pattern(regexp="^[A-Z].*")
+    // Unique name for each exercise
+    @Column(unique = true)
     private String name;
 
-    // Muscle group to which belongs the exercise, must start with uppercase, between 3 and 10 characters
-    @NotBlank
-    @Size(min=3, max=10)
-    @Pattern(regexp="^[A-Z].*")
+    // Muscle group to which belongs the exercise
     private String muscleGroup;
     
     // Equipment required to perform the exercise, optional

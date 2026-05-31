@@ -3,7 +3,9 @@ package com.issam.ridem.controller;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import com.issam.ridem.entity.Exercise;
+import com.issam.ridem.dto.exercise.CreateExerciseRequest;
+import com.issam.ridem.dto.exercise.ExerciseDTO;
+import com.issam.ridem.dto.exercise.UpdateExerciseRequest;
 import com.issam.ridem.service.ExerciseService;
 import jakarta.validation.Valid;
 
@@ -21,19 +23,19 @@ public class ExerciseController {
 
     // Handles GET /exercises, retrieves and returns all exercises from the database as JSON
     @GetMapping
-    public List<Exercise> getAllExercises() {
+    public List<ExerciseDTO> getAllExercises() {
         return exerciseService.getAllExercises();
     }
 
     // Handles POST /exercises, creates a new exercise, returns 400 if validation fails
     @PostMapping
-    public Exercise createExercise(@Valid @RequestBody Exercise exercise) {
-        return exerciseService.createExercise(exercise);
+    public ExerciseDTO createExercise(@Valid @RequestBody CreateExerciseRequest request) {
+        return exerciseService.createExercise(request);
     }
 
     // Handles GET /exercises/{id}, returns a single exercise by ID, or 404 if not found
     @GetMapping("/{id}")
-    public Exercise getExerciseById(@PathVariable Long id) {
+    public ExerciseDTO getExerciseById(@PathVariable Long id) {
         return exerciseService.getExerciseById(id);
     }
 
@@ -46,7 +48,7 @@ public class ExerciseController {
 
     // Handles PUT /exercises/{id}, returns updated exercise on success, 404 if exercise does not exist
     @PutMapping("/{id}")
-    public Exercise updateExercise(@PathVariable Long id, @Valid @RequestBody Exercise exercise) {
-        return exerciseService.updateExercise(id, exercise);
+    public ExerciseDTO updateExercise(@PathVariable Long id, @Valid @RequestBody UpdateExerciseRequest request) {
+        return exerciseService.updateExercise(id, request);
     }
 }

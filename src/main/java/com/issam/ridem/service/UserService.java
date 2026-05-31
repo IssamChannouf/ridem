@@ -3,10 +3,12 @@ package com.issam.ridem.service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.issam.ridem.repository.UserRepository;
-import com.issam.ridem.dto.CreateUserRequest;
-import com.issam.ridem.dto.UpdateUserRequest;
-import com.issam.ridem.dto.UserDTO;
+
 import java.util.List;
+
+import com.issam.ridem.dto.user.CreateUserRequest;
+import com.issam.ridem.dto.user.UpdateUserRequest;
+import com.issam.ridem.dto.user.UserDTO;
 import com.issam.ridem.entity.User;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,7 +60,8 @@ public class UserService {
 
     // Deletes a single user by ID, throws RuntimeException if not found
     public void deleteUser(Long id) {
-        getUserById(id);
+        userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found by id: " + id));
         userRepository.deleteById(id);
     }
 
