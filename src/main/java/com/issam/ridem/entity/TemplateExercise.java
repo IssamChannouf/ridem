@@ -1,7 +1,6 @@
 package com.issam.ridem.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
 // Links a WorkoutTemplate to an Exercise, stored in the template_exercises table
@@ -16,30 +15,24 @@ public class TemplateExercise {
     private Long templateExerciseId;
 
     // Workout template this exercise belongs to, foreign key (workout_template_id)
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "workout_template_id")
     private WorkoutTemplate workoutTemplate;
     
     // Exercise being included in the template, foreign key (exercise_id)
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
     // Planned number of sets for the exercise
-    @Min(1)
     private Integer sets;
 
     // Planned number of repetitions per set of an exercise
-    @Min(1)
     private Integer reps;
 
     // Planned weight for the exercise in kg
-    @Min(1)
     private Double weight;
 
     // Planned rest time between sets in seconds 
-    @Min(0)
     private Integer rest;
 }
