@@ -1,7 +1,6 @@
 package com.issam.ridem.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
 // Represents a set entity mapped to the sets table in the database
@@ -16,16 +15,13 @@ public class Set {
     private Long setId;
 
     // Session exercises this set belongs to, foreign key (session_exercise_id)
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "session_exercise_id")
     private SessionExercise sessionExercise;
 
     // Performed number of repetitions per set
-    @Min(1)
     private Integer reps;
 
     // Performed weight for the set in kg
-    @Min(0)
     private Double weight;
 }

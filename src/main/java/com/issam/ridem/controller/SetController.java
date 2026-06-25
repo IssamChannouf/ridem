@@ -4,8 +4,8 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
-import com.issam.ridem.entity.Set;
 import com.issam.ridem.service.SetService;
+import com.issam.ridem.dto.set.*;
 
 // Handles all HTTP requests related to sets, maps to /sets base URL
 @RestController
@@ -19,19 +19,19 @@ public class SetController {
 
     // Handles GET /sets, retrieves and returns all sets as JSON
     @GetMapping
-    public List<Set> getAllSets() {
+    public List<SetDTO> getAllSets() {
         return setService.getAllSets();
     }
 
     // Handles POST /sets, creates a new set, returns 400 if validation fails
     @PostMapping
-    public Set createSet(@Valid @RequestBody Set set) {
-        return setService.createSet(set);
+    public SetDTO createSet(@Valid @RequestBody CreateSetRequest request) {
+        return setService.createSet(request);
     }
 
     // Handles GET /sets/{id}, returns a single set by ID, 404 if not found
     @GetMapping("/{id}")
-    public Set getSetById(@PathVariable Long id) {
+    public SetDTO getSetById(@PathVariable Long id) {
         return setService.getSetById(id);
     }
 
@@ -44,7 +44,7 @@ public class SetController {
 
     // Handles PUT /sets/{id}, returns updated version of a set on success, 404 if not found
     @PutMapping("/{id}")
-    public Set updateSet(@PathVariable Long id, @Valid @RequestBody Set set) {
-        return setService.updateSet(id, set);
+    public SetDTO updateSet(@PathVariable Long id, @Valid @RequestBody UpdateSetRequest request) {
+        return setService.updateSet(id, request);
     }
 }
