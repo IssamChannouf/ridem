@@ -1,10 +1,11 @@
 package com.issam.ridem.controller;
+
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
-import com.issam.ridem.entity.WorkoutSession;
 import com.issam.ridem.service.WorkoutSessionService;
+import com.issam.ridem.dto.workoutsession.*;
 
 // Handles all HTTP requests related to workout sessions, maps to /workout-sessions base URL
 @RestController
@@ -18,19 +19,19 @@ public class WorkoutSessionController {
 
     // Handles GET /workout-sessions, retrieves and returns all workout sessions as JSON
     @GetMapping
-    public List<WorkoutSession> getAllWorkoutSessions() {
+    public List<WorkoutSessionDTO> getAllWorkoutSessions() {
         return workoutSessionService.getAllWorkoutSessions();
     }
 
     // Handles POST /workout-sessions, creates a new workout session, returns 400 if validation fails
     @PostMapping
-    public WorkoutSession createWorkoutSession(@Valid @RequestBody WorkoutSession workoutSession) {
-        return workoutSessionService.createWorkoutSession(workoutSession);
+    public WorkoutSessionDTO createWorkoutSession(@Valid @RequestBody CreateWorkoutSessionRequest request) {
+        return workoutSessionService.createWorkoutSession(request);
     }
 
     // Handles GET /workout-sessions/{id}, returns a single workout session by ID, 404 if not found
     @GetMapping("/{id}")
-    public WorkoutSession getWorkoutSessionById(@PathVariable Long id) {
+    public WorkoutSessionDTO getWorkoutSessionById(@PathVariable Long id) {
         return workoutSessionService.getWorkoutSessionById(id);
     }
 
@@ -43,7 +44,7 @@ public class WorkoutSessionController {
 
     // Handles PUT /workout-sessions/{id}, returns updated workout session on success, 404 if not found
     @PutMapping("/{id}")
-    public WorkoutSession updateWorkoutSession(@PathVariable Long id, @Valid @RequestBody WorkoutSession workoutSession) {
-        return workoutSessionService.updateWorkoutSession(id, workoutSession);
+    public WorkoutSessionDTO updateWorkoutSession(@PathVariable Long id, @Valid @RequestBody UpdateWorkoutSessionRequest request) {
+        return workoutSessionService.updateWorkoutSession(id, request);
     }
 }
