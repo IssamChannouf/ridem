@@ -3,7 +3,6 @@ package com.issam.ridem.entity;
 import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
 // Workout session linked to a User and a WorkoutTemplate, stored in the workout_sessions table 
@@ -18,13 +17,11 @@ public class WorkoutSession {
     private Long sessionId;
 
     // Owner of this session, referenced as a foreign key (user_id) in the database 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     
     // Template of this session, referenced as a foreign key (template_id) in the database 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "template_id")
     private WorkoutTemplate workoutTemplate;
@@ -34,6 +31,5 @@ public class WorkoutSession {
     private LocalDate date;
 
     // Optional notes to allow the user to add remarks about the session
-    @Size(max=200)
     private String notes;
 }

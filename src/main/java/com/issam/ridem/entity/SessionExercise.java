@@ -1,7 +1,6 @@
 package com.issam.ridem.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
 // Links a WorkoutSession to an Exercise, stored in the session_exercises table
@@ -16,30 +15,24 @@ public class SessionExercise  {
     private Long sessionExerciseId;
 
     // Workout session this exercise belongs to, foreign key (workout_session_id)
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "workout_session_id")
     private WorkoutSession workoutSession;
     
     // Exercise being included in the session, foreign key (exercise_id)
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
     // Performed number of sets for the exercise
-    @Min(1)
     private Integer sets;
 
     // Performed number of repetitions per set of an exercise
-    @Min(1)
     private Integer reps;
 
     // Performed weight for the exercise in kg
-    @Min(1)
     private Double weight;
 
     // Performed rest time between sets in seconds 
-    @Min(0)
     private Integer rest;
 }

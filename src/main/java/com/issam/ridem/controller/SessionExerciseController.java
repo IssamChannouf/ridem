@@ -4,8 +4,8 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
-import com.issam.ridem.entity.SessionExercise;
 import com.issam.ridem.service.SessionExerciseService;
+import com.issam.ridem.dto.sessionexercise.*;
 
 // Handles all HTTP requests related to session-exercise assignments, maps to /session-exercises base URL
 @RestController
@@ -19,19 +19,19 @@ public class SessionExerciseController {
 
     // Handles GET /session-exercises, retrieves and returns all session-exercise assignments as JSON
     @GetMapping
-    public List<SessionExercise> getAllSessionExercises() {
+    public List<SessionExerciseDTO> getAllSessionExercises() {
         return sessionExerciseService.getAllSessionExercises();
     }
 
     // Handles POST /session-exercises, creates a new session-exercise assignment, returns 400 if validation fails
     @PostMapping
-    public SessionExercise createSessionExercise(@Valid @RequestBody SessionExercise sessionExercise) {
-        return sessionExerciseService.createSessionExercise(sessionExercise);
+    public SessionExerciseDTO createSessionExercise(@Valid @RequestBody CreateSessionExerciseRequest request) {
+        return sessionExerciseService.createSessionExercise(request);
     }
 
     // Handles GET /session-exercises/{id}, returns a single session-exercise assignment by ID, 404 if not found
     @GetMapping("/{id}")
-    public SessionExercise getSessionExerciseById(@PathVariable Long id) {
+    public SessionExerciseDTO getSessionExerciseById(@PathVariable Long id) {
         return sessionExerciseService.getSessionExerciseById(id);
     }
 
@@ -44,7 +44,7 @@ public class SessionExerciseController {
 
     // Handles PUT /session-exercises/{id}, returns updated session-exercise assignment on success, 404 if not found
     @PutMapping("/{id}")
-    public SessionExercise updateSessionExercise(@PathVariable Long id, @Valid @RequestBody SessionExercise sessionExercise) {
-        return sessionExerciseService.updateSessionExercise(id, sessionExercise);
+    public SessionExerciseDTO updateSessionExercise(@PathVariable Long id, @Valid @RequestBody UpdateSessionExerciseRequest request) {
+        return sessionExerciseService.updateSessionExercise(id, request);
     }
 }
