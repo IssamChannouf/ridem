@@ -1,7 +1,6 @@
 package com.issam.ridem.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 
 // Workout template owned by a user, mapped to the workout_templates table
@@ -14,16 +13,11 @@ public class WorkoutTemplate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long templateId;
 
-    // Template name, must start with uppercase, between 3 and 30 characters
-    @NotBlank
-    @Size(min=3, max=30)
-    @Pattern(regexp="^[A-Z].*")
+    // Name of the template
     private String name;
 
-    // Owner of this template, referenced as a foreign key (user_id) in the database 
-    @NotNull
+    // Owner of this template, referenced as a foreign key (user_id) in the database
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    
 }
