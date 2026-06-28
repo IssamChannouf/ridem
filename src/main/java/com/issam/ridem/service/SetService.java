@@ -68,4 +68,14 @@ public class SetService {
         Set saved = setRepository.save(existingSet);
         return new SetDTO(saved);
     }
+
+    // Finds the personal best of an exercise performed by a user, throws RuntimeException if not found
+    public Double findPersonalBest(Long exerciseId, Long userId) {
+        Double personalBest = setRepository.findPersonalBest(exerciseId, userId);
+        if (personalBest == null){
+            throw new RuntimeException("No personal best found for exerciseId: " + exerciseId + " and userId: " + userId);
+        } else {
+            return personalBest;
+        }
+    }
 }
